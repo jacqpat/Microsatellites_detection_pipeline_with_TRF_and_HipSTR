@@ -60,3 +60,11 @@ Note: HipSTR does not take as input the compressed .DAT format, so we convert it
 Depending on scenario, HipSTR require different set of parameters and options. Please refer to their documentation for further information. In our case, we used De Novo stutter estimation + STR calling with De Novo allele generation.
 
 `HipSTR --bam-files [TXT] --fasta [REF] --regions [BED] --str-vcf [OUT]`
+
+For ease of use in the next steps, we create a TSV genotypes matrix from the VCF with `AD_vcf2tsv.sh`.
+
+### STEP C: Select Samples and Microsatellites
+
+Once we have a genotype matrix, we calculate the missing rates of each sample and locus with `BA_microsats_absence.py`. Using those values, we can keep only samples with enough information to be useful. In our case, we removed all samples with more than 80% missing values, and then we ran `BA_microsats_absence.py` again. We noted the chromosome and position of Microsatellites with the fewest missing rates, saved in a new TSV file. In our case, we kept only Microsatellites for which we had informations in at least 75% of our samples.
+
+We can now manually remove the bad samples from the genotype matrix, and use it with the new TSV file to create a third and final matrix with `BB_keep_selected_microsats.py`.
