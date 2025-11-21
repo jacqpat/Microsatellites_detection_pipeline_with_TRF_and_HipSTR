@@ -1,7 +1,6 @@
 import pandas as pd
 
 tsv=r"/PATH/TO/YOUR/TSV/here.tsv"
-txt=r"/PATH/TO/YOUR/MICROSATS/positions.txt"
 miss_samples=r"/PATH/TO/YOUR/OUTPUT/miss_samples.csv"
 miss_sites=r"/PATH/TO/YOUR/OUTPUT/miss_sites.csv"
 
